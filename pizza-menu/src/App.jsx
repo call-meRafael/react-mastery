@@ -5,11 +5,23 @@ const PizzaMenu = () => {
   return (
     <div>
       <h2>Pizza Menu</h2>
-      <ul>
+      <div>
         {pizzas.map((pizza) => {
-          return <li key={pizza.name}>{pizza.name}</li>;
+          return (
+            <div key={pizza.name}>
+              <h3>{pizza.name}</h3>
+              <img src={pizza.photoName} alt={pizza.name} />
+              <p>{pizza.ingredients}</p>
+              <p>Price: ${pizza.price}</p>
+              {pizza.soldOut ? (
+                <p>{pizza.soldOutText}</p>
+              ) : (
+                <button>Buy</button>
+              )}
+            </div>
+          );
         })}
-      </ul>
+      </div>
     </div>
   );
 };
