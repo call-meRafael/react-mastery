@@ -53,7 +53,6 @@ const PizzaMenu = () => {
     <main className="menu">
       <h2>Nossas massas</h2>
 
-      {/* O CSS espera uma lista com a classe .pizzas */}
       <ul className="pizzas">
         {pizzas.map((pizza) => {
           return (
@@ -64,12 +63,12 @@ const PizzaMenu = () => {
             >
               <img src={pizza.photoName} alt={pizza.name} />
 
-              {/* O CSS espera uma div envolvendo os textos da pizza */}
+              
               <div>
                 <h3>{pizza.name}</h3>
                 <p>{pizza.ingredients}</p>
 
-                {/* O CSS do professor usa tags inline (span) para os preços/status */}
+                
                 <span>Preço: {formatPrice(pizza.price)}</span>
 
                 {pizza.soldOut ? (
