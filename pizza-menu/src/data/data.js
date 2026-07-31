@@ -35,6 +35,13 @@ const pizzas = [
     photoName: "src/assets/prosciutto.jpg",
     soldOut: false,
   },
+  {
+    name: "Pizza de Espinafre",
+    ingredients: "Espinafre fresco, queijo, muçarela e molho de tomate",
+    price: 25,
+    photoName: "src/assets/spinaci.jpg",
+    soldOut: false,
+  }
 ];
 
 export { pizzas };
