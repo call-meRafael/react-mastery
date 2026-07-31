@@ -1,4 +1,5 @@
 import { pizzas } from "./data/data.js";
+import "./styles/index.css";
 
 const formatPrice = (price) => {
   return price.toLocaleString("pt-BR", {
@@ -8,38 +9,108 @@ const formatPrice = (price) => {
   });
 };
 
+const timeToOpen = () => {
+  const now = new Date().getHours();
+  const openHour = 17;
+  const closeHour = 23;
+
+  if (now >= openHour && now <= closeHour) {
+    return "Já estamos funcionando!";
+  }
+  
+
+  return `No momento estamos fechados! Horário de funcionamento é de ${openHour}h até ${closeHour}h.`;
+}
+
 // 1. O componente menor fica no topo para o JavaScript conhecê-lo primeiro
+// const PizzaMenu = () => {
+//   return (
+//     <div>
+//       <main className="menu">
+//         <h2>Nossas massas</h2>
+//         {pizzas.map((pizza) => {
+//           return (
+//             <div key={pizza.name} className="pizzas">
+//               <h3>{pizza.name}</h3>
+//               <img src={pizza.photoName} alt={pizza.name} />
+//               <p>{pizza.ingredients}</p>
+//               <p>Preço: {formatPrice(pizza.price)}</p>
+//               {pizza.soldOut ? (
+//                 <p>{pizza.soldOutText}</p>
+//               ) : (
+//                 <button>Pedir</button>
+//               )}
+//             </div>
+//           );
+//         })}
+//       </main>
+//     </div>
+//   );
+// };
+
 const PizzaMenu = () => {
   return (
-    <div>
-      <h2>Pizza Menu</h2>
-      <div>
+    <main className="menu">
+      <h2>Nossas massas</h2>
+
+      {/* O CSS espera uma lista com a classe .pizzas */}
+      <ul className="pizzas">
         {pizzas.map((pizza) => {
           return (
-            <div key={pizza.name}>
-              <h3>{pizza.name}</h3>
+            /* Lógica condicional: adiciona "sold-out" se a pizza estiver esgotada */
+            <li
+              className={`pizza ${pizza.soldOut ? "sold-out" : ""} pizza-box`}
+              key={pizza.name}
+            >
               <img src={pizza.photoName} alt={pizza.name} />
-              <p>{pizza.ingredients}</p>
-              <p>Preço: {formatPrice(pizza.price)}</p>
-              {pizza.soldOut ? (
-                <p>{pizza.soldOutText}</p>
-              ) : (
-                <button>Pedir</button>
-              )}
-            </div>
+
+              {/* O CSS espera uma div envolvendo os textos da pizza */}
+              <div>
+                <h3>{pizza.name}</h3>
+                <p>{pizza.ingredients}</p>
+
+                {/* O CSS do professor usa tags inline (span) para os preços/status */}
+                <span>Preço: {formatPrice(pizza.price)}</span>
+
+                {pizza.soldOut ? (
+                  <span>{pizza.soldOutText}</span>
+                ) : (
+                  <button className="btn">Pedir</button>
+                )}
+              </div>
+            </li>
           );
         })}
-      </div>
-    </div>
+      </ul>
+    </main>
   );
 };
+
+
+// Componente responsável pelo cabeçalho da página, exibindo o título da aplicação.
+const MainHeader = () => {
+  return (
+    <header className="header">
+      <h1>Fast React Pizza Co.</h1>;
+    </header>
+  ); 
+
+}
+
+// Componente responsável pelo rodapé da página, exibindo o horário de funcionamento.
+const MainFooter = () => {
+  return (
+    <footer className="footer">{timeToOpen()}</footer>
+  );
+}
 
 // 2. O componente principal fica embaixo renderizando o de cima
 function App() {
   return (
-    <div>
-      <h1>Hello React!</h1>
+    <div className="container">
+      <MainHeader />
       <PizzaMenu />
+      <MainFooter />
     </div>
   );
 }
