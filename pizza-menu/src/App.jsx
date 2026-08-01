@@ -22,31 +22,6 @@ const timeToOpen = () => {
   return `No momento estamos fechados! Horário de funcionamento é de ${openHour}h até ${closeHour}h.`;
 }
 
-// 1. O componente menor fica no topo para o JavaScript conhecê-lo primeiro
-// const PizzaMenu = () => {
-//   return (
-//     <div>
-//       <main className="menu">
-//         <h2>Nossas massas</h2>
-//         {pizzas.map((pizza) => {
-//           return (
-//             <div key={pizza.name} className="pizzas">
-//               <h3>{pizza.name}</h3>
-//               <img src={pizza.photoName} alt={pizza.name} />
-//               <p>{pizza.ingredients}</p>
-//               <p>Preço: {formatPrice(pizza.price)}</p>
-//               {pizza.soldOut ? (
-//                 <p>{pizza.soldOutText}</p>
-//               ) : (
-//                 <button>Pedir</button>
-//               )}
-//             </div>
-//           );
-//         })}
-//       </main>
-//     </div>
-//   );
-// };
 
 const PizzaMenu = () => {
   return (
