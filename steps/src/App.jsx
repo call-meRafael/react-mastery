@@ -12,19 +12,21 @@ export default function App() {
 
   const handlePrevious = () => {
     if (step > 1) {
-      setStep(step - 1);
+      setStep((curStep) => curStep - 1);
     }
   };
 
+  {/* Sempre prefira usar uma callback function para atualizar o *estado*, desta forma, você garante que está utilizando o valor mais recente do estado, evitando comportamenteos indesejados. */}
+
   const handleNext = () => {
     if (step < 3) {
-      setStep(step + 1);
+      setStep((curStep) => curStep + 1);
     }
   };
 
   return (
     <>
-      <button className="close" onClick={() => setIsOpen(!isOpen)}>
+      <button className="close" onClick={() => setIsOpen((is) => !is)}>
         &times;
       </button>
       { isOpen && (
